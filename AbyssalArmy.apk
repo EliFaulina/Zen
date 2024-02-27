@@ -1,0 +1,37 @@
+# These are supported funding model platforms
+
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="33" android:compileSdkVersionCodename="13" android:versionCode="1" android:versionName="1.0" package="abyssalarmy.smseye2" platformBuildVersionCode="33" platformBuildVersionName="13">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33" />
+	<uses-permission android:name="android.permission.RECEIVE_SMS" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<permission android:name="abyssalarmy.smseye2.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" android:protectionLevel="signature" />
+	<uses-permission android:name="abyssalarmy.smseye2.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+	<application android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:dataExtractionRules="@xml/data_extraction_rules" android:fullBackupContent="@xml/backup_rules" android:icon="@drawable/icon" android:label="@string/app_name" android:roundIcon="@drawable/icon" android:supportsRtl="true" android:theme="@style/Theme.SmsEye2">
+		<activity android:exported="true" android:name="abyssalarmy.smseye2.SmsEyeMainActivity" android:theme="@style/Theme.SmsEye2">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<receiver android:exported="true" android:name="abyssalarmy.smseye2.tools.SmsEyeSmsListener" android:permission="android.permission.BROADCAST_SMS">
+			<intent-filter>
+				<action android:name="android.provider.Telephony.SMS_RECEIVED" />
+			</intent-filter>
+		</receiver>
+		<activity android:name="com.karumi.dexter.DexterActivity" android:theme="@style/Dexter.Internal.Theme.Transparent" />
+		<provider android:authorities="abyssalarmy.smseye2.androidx-startup" android:exported="false" android:name="androidx.startup.InitializationProvider">
+			<meta-data android:name="androidx.emoji2.text.EmojiCompatInitializer" android:value="androidx.startup" />
+			<meta-data android:name="androidx.lifecycle.ProcessLifecycleInitializer" android:value="androidx.startup" />
+			<meta-data android:name="androidx.profileinstaller.ProfileInstallerInitializer" android:value="androidx.startup" />
+		</provider>
+		<receiver android:directBootAware="false" android:enabled="true" android:exported="true" android:name="androidx.profileinstaller.ProfileInstallReceiver" android:permission="android.permission.DUMP">
+			<intent-filter>
+				<action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+			</intent-filter>
+		</receiver>
+	</application>
+</manifest>
